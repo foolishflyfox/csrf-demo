@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CSRF 攻击测试</h1>
+    <button onclick="trans()">转账</button>
+    <button onclick="login()">登录</button>
+    <a href="http://localhost:18080">恶意链接</a>
+</body>
+
+<script lang="js">
+    async function trans() {
+        const response = await fetch("/trans?name=fhb&money=100");
+        const info = await response.text();
+        alert(info);
+    }
+    async function login() {
+        const response = await fetch("/login");
+        const info = await response.text();
+        alert(info);
+    }
+</script>
+</html>
